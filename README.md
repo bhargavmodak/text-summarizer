@@ -1,0 +1,3 @@
+# Syntactic Text Summarizer
+
+This is a simple syntactic text summarizer that uses cosine similarity to find the most important sentences in a text. The summarizer uses the `nltk` library to tokenize the text and remove stopwords. The `nltk` library is also used to find the part of speech tags for each word in the text. The summarizer then uses the part of speech tags to find the most important sentences in the text.

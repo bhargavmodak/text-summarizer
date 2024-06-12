@@ -4,16 +4,15 @@ from nltk.corpus import stopwords
 from nltk.cluster.util import cosine_distance
 import numpy as np
 import networkx as nx
-import re  # Add this line to import the 're' module for regular expressions
+import tkinter as tk
+from tkinter import scrolledtext
 
 
-# %%
+# This function reads the input text and splits it into sentences.
 def read_article(text):
-    sentences = []
-
-    # Split the input text into sentences
     article = text.split(". ")
 
+    sentences = []
     for sentence in article:
         # Tokenize the sentence by replacing non-alphabetic characters and splitting by spaces
         sentences.append(sentence.replace("[^a-zA-Z]", " ").split(" "))
@@ -24,7 +23,6 @@ def read_article(text):
     return sentences
 
 
-# %%
 # This function calculates the similarity between two sentences using cosine distance.
 def sentence_similarity(sent1, sent2, stopwords=None):
     if stopwords is None:
@@ -59,7 +57,6 @@ def sentence_similarity(sent1, sent2, stopwords=None):
     return 1 - cosine_distance(vector1, vector2)
 
 
-# %%
 # This function builds a similarity matrix for sentences based on their pairwise similarity.
 def build_similarity_matrix(sentences, stop_words):
     # Create an empty similarity matrix with dimensions equal to the number of sentences
@@ -79,43 +76,30 @@ def build_similarity_matrix(sentences, stop_words):
     return similarity_matrix
 
 
-# %%
 # This function generates a text summary based on the input file and the top 'n' sentences.
 def generate_summary(sentences, top_n=5):
-    # Download NLTK stopwords dataset (if not already downloaded)
-    nltk.download("stopwords")
 
-    # Get the English stopwords
+    nltk.download("stopwords")
     stop_words = stopwords.words("english")
 
-    # Initialize a list to store the summarized sentences
-    summarize_text = []
-
-    # Step 2 - Generate a similarity matrix across sentences
     sentence_similarity_matrix = build_similarity_matrix(sentences, stop_words)
-
-    # Step 3 - Rank sentences in the similarity matrix using PageRank
     sentence_similarity_graph = nx.from_numpy_array(sentence_similarity_matrix)
+
     scores = nx.pagerank(sentence_similarity_graph)
 
-    # Step 4 - Sort the ranked sentences and select the top ones
     ranked_sentences = sorted(
         ((scores[i], s) for i, s in enumerate(sentences)), reverse=True
     )
 
-    # Step 5 - Generate the summary by joining the top sentences
+    # Initialize a list to store the summarized sentences
+    summarize_text = []
     for i in range(top_n):
         summarize_text.append(" ".join(ranked_sentences[i][1]))
 
-    # Return the summarized text
     return ". ".join(summarize_text) + "."
 
 
-# %%
-import tkinter as tk
-from tkinter import scrolledtext
-
-
+# Driver code
 def main():
     # Create the main tkinter window
     window = tk.Tk()

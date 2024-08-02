@@ -1,17 +1,28 @@
-# Syntactic Text Summarizer
+<h1 align="center">Syntactic Text Summarizer</h1>
 
-This is a simple syntactic text summarizer that uses cosine similarity to find the most important sentences in a text. **Note that it does not rephrase the sentences, but rather extracts the most important ones.** The summarizer uses the `nltk`, `numpy`, and `networkx` libraries to tokenize the text, remove stopwords, and create a graph of the sentences, respectively. The graph is then used to calculate the importance of each sentence based on the cosine similarity between the sentences. The sentences with the highest importance are then extracted and concatenated to form the summary.
+<!-- Languages -->
+<p align="center">
+    <img src="https://img.shields.io/badge/Language-Python-blue?style=for-the-badge&logo=python" alt="Language">
+</p>
+
+<p align="center">
+A simple syntactic text summarizer that uses cosine similarity to find the most important sentences in a text.
+</p>
+<hr style="width:100px; margin: 1rem auto;">
+
+![alt text](image.png)
+
+**Note that it does not rephrase the sentences, but rather extracts the most important ones.** The summarizer uses the `nltk`, `numpy`, and `networkx` libraries to tokenize the text, remove stopwords, and create a graph of the sentences, respectively. The graph is then used to calculate the importance of each sentence based on the cosine similarity between the sentences. The sentences with the highest importance are then extracted and concatenated to form the summary.
 
 ## Table of Contents
-- [Syntactic Text Summarizer](#syntactic-text-summarizer)
-  - [Table of Contents](#table-of-contents)
-  - [Libraries](#libraries)
-  - [How to Run the Summarizer locally](#how-to-run-the-summarizer-locally)
-      - [1. Clone the repository:](#1-clone-the-repository)
-      - [2. Create a virtual environment (optional):](#2-create-a-virtual-environment-optional)
-      - [3. Install the required libraries:](#3-install-the-required-libraries)
-      - [4. Run the summarizer:](#4-run-the-summarizer)
-  - [Contributing](#contributing)
+- [Table of Contents](#table-of-contents)
+- [Libraries](#libraries)
+- [How to Run the Summarizer locally](#how-to-run-the-summarizer-locally)
+    - [1. Clone the repository:](#1-clone-the-repository)
+    - [2. Create a virtual environment (optional):](#2-create-a-virtual-environment-optional)
+    - [3. Install the required libraries:](#3-install-the-required-libraries)
+    - [4. Run the summarizer:](#4-run-the-summarizer)
+- [Contributing](#contributing)
 
 ## Libraries
 The following python libraries are used in this project:
@@ -50,8 +61,6 @@ pip install -r requirements.txt
 ```bash
 python text_summarizer.py
 ```
-
-![alt text](image.png)
 
 ## Contributing
 
